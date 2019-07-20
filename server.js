@@ -11,7 +11,7 @@ var server = app.listen(port, function() {
 app.use(express.static('static'));
 // Socket setup
 var io = socket(server);
-io.on('connection', function(socket) {//create user connection
+io.on('connection', function(socket) {//create user connection handlers
   console.log('Connection established, id=', socket.id);
   console.log('Connection data', socket.handshake.query);
   var initData = socket.handshake.query.initData ? JSON.parse(socket.handshake.query.initData) : null;
@@ -24,7 +24,7 @@ io.on('connection', function(socket) {//create user connection
   });
 });
 const nsp = io.of('/moderator');
-nsp.on('connection', function(socket){
+nsp.on('connection', function(socket){//create moderator connection handlers
   console.log('someone connected');
 });
 class User {
